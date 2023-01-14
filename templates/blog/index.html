@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Nerd Cave - All about games {% endblock %}
+{% block hero-image-url %}
+    url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
+{% endblock %}
+{% block hero-heading %}
+    Latest news from console world
+{% endblock %}
+{% block hero-subheading %}
+    All in one place
+{% endblock %}
+{% block content %}
+{% if ps5.latest_post %}
+<section id="latest-posts" class="container mt-4">
+    <hr>
+    <h2>PS5</h2>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-7">
+            <div class="card border-primary col p-0" id="latest-post">
+                <img src="{{ ps5.latest_post.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ps5.latest_post.title}}</h5>
+                    <p class="card-text">{{ ps5.latest_post.excerpt}}</p>
+                    <a href="{% url 'post_detail' ps5.latest_post.slug %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            {% for item in ps5.recent_posts %}
+                <div class="row">
+                    <div class="card border-primary col mb-2 p-0" id="previous-posts">
+                        <img src="{{ item.image.url }}" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">{{ item.title}}</h5>
+                            <p class="card-text">{{ item.excerpt }}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% if xbox.latest_post %}
+<section id="latest-posts" class="container mt-4">
+    <hr>
+    <h2>XBOX</h2>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-7">
+            <div class="card border-primary col p-0" id="latest-post">
+                <img src="{{ xbox.latest_post.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ xbox.latest_post.title}}</h5>
+                    <p class="card-text">{{ xbox.latest_post.excerpt}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            {% for item in xbox.recent_posts %}
+                <div class="row">
+                    <div class="card border-primary col mb-2 p-0" id="previous-posts">
+                        <img src="{{ item.image.url }}" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">{{ item.title}}</h5>
+                            <p class="card-text">{{ item.excerpt }}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% if switch.latest_post %}
+<section id="latest-posts" class="container mt-4">
+    <hr>
+    <h2>SWITCH</h2>
+    <hr>
+    <div class="row mt-4">
+        <div class="col-7">
+            <div class="card border-primary col p-0" id="latest-post">
+                <img src="{{ switch.latest_post.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ switch.latest_post.title}}</h5>
+                    <p class="card-text">{{ switch.latest_post.excerpt}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            {% for item in switch.recent_posts %}
+                <div class="row">
+                    <div class="card border-primary col mb-2 p-0" id="previous-posts">
+                        <img src="{{ item.image.url }}" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">{{ item.title}}</h5>
+                            <p class="card-text">{{ item.excerpt }}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
