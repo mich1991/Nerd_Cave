@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css_files %}
+     <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+{% endblock %}
+{% block title %} Nerd Cave - {{ post.title}} {% endblock %}
+{% block hero-image-url %}
+    url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
+{% endblock %}
+{% block hero-heading %}
+    {{ post.title}}
+{% endblock %}
+{% block hero-subheading %}
+    {{ post.excerpt}}
+{% endblock %}
+{% block content %}
+<div class="container my-4">
+    <img src="{{post.image.url}}" class="img-fluid" alt="Responsive image">
+    <div>
+        {{ post.content | safe }}
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+{#         View Posted Comments Section #}
+        <div class="col-lg-6">
+        </div>
+{#         Post a Comment Section #}
+        <div class="col-lg-6">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

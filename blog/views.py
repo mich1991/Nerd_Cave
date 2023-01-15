@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, ListView
 from .models import Post, Category
 from django.contrib.auth.models import User
@@ -58,8 +58,14 @@ class PostListView(ListView):
 
 
 class PostDetailView(View):
-	def get(self):
-		pass
+
+	def get(self, request, slug):
+		queryset = Post.objects.filter(status=1)
+		post = get_object_or_404(queryset, slug=slug)
+		ctx = {
+			'post': post,
+		}
+		return render(request, 'blog/post_detail.html', ctx)
 
 
 class PostLikeView(View):
