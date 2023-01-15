@@ -1,0 +1,14 @@
+#hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+#latest-post{
+    height: 45rem;
+}
+#previous-posts{
+    height: 14.6rem;
+}
+#previous-posts .card-img{
+    height: 14.4rem;
+}
