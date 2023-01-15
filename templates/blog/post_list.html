@@ -14,19 +14,21 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-9">
-            {% for post in post_list %}
-                    <div class="col-4">
-                        <div class="card border-primary col p-0">
-                            <img src="{{ post.image.url }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ post.title}}</h5>
-                                <p class="card-text">{{ post.excerpt}}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                <span class="badge bg-info float-end">{{ post.category }}</span>
+            <div class="row">
+                {% for post in post_list %}
+                        <div class="col-4">
+                            <div class="card border-primary col p-0">
+                                <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title}}</h5>
+                                    <p class="card-text">{{ post.excerpt}}</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <span class="badge bg-info float-end">{{ post.category }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
             {% if is_paginated %}
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
@@ -40,9 +42,30 @@
             </nav>
             {% endif %}
         </div>
-    </div>
-    <div class="col-3">
-    {#  filters goes here      #}
+        <div class="col-3">
+            <form method="get" class="d-flex flex-column gap-2">
+                <div class="form-group">
+                    <label for="title">Post Title</label>
+                    <input type="text" class="form-control" name="title" value="{{ form.title }}">
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" name="category">
+                        <option value=""></option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {% if form.category == category.id %} selected {% endif %} >
+                                {{ category.name }} {% if form.category == category.id %} match {% endif %}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" name="author" value="{{ form.author }}">
+                </div>
+                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

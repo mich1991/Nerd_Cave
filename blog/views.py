@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View, ListView
-from .models import Post
+from .models import Post, Category
+from django.contrib.auth.models import User
 
 
 class HomePageView(View):
@@ -31,6 +32,28 @@ class PostListView(ListView):
 	model = Post
 	template_name = 'blog/post_list'
 	paginate_by = 12
+
+	def get_queryset(self, **kwargs):
+		url_query = self.request.GET
+		base_query = super().get_queryset().filter(status='1')
+		if url_query.get('title'):
+			base_query = base_query.filter(title__icontains=url_query.get('title'))
+		if url_query.get('category'):
+			base_query = base_query.filter(category=url_query.get('category'))
+		if url_query.get('author'):
+			base_query = base_query.filter(author__username__icontains=url_query.get('author'))
+		return base_query
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['categories'] = Category.objects.all()
+		context['form'] = {
+			'title': self.request.GET.get('title') if self.request.GET.get('title') else '',
+			'category': self.request.GET.get('category') if self.request.GET.get('category') else '',
+			'author': self.request.GET.get('author') if self.request.GET.get('author') else ''
+		}
+		print(context['form'])
+		return context
 
 
 class PostDetailView(View):
