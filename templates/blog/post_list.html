@@ -43,6 +43,7 @@
             {% endif %}
         </div>
         <div class="col-3">
+            <h3 class="text-center">Filters</h3>
             <form method="get" class="d-flex flex-column gap-2">
                 <div class="form-group">
                     <label for="title">Post Title</label>
@@ -53,8 +54,8 @@
                     <select class="form-control" name="category">
                         <option value=""></option>
                         {% for category in categories %}
-                            <option value="{{ category.id }}" {% if form.category == category.id %} selected {% endif %} >
-                                {{ category.name }} {% if form.category == category.id %} match {% endif %}
+                            <option value="{{ category.name }}" {% if form.category == category.name %} selected {% endif %} >
+                                {{ category.name }}
                             </option>
                         {% endfor %}
                     </select>

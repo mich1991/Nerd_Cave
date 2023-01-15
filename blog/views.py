@@ -39,7 +39,7 @@ class PostListView(ListView):
 		if url_query.get('title'):
 			base_query = base_query.filter(title__icontains=url_query.get('title'))
 		if url_query.get('category'):
-			base_query = base_query.filter(category=url_query.get('category'))
+			base_query = base_query.filter(category__name=url_query.get('category'))
 		if url_query.get('author'):
 			base_query = base_query.filter(author__username__icontains=url_query.get('author'))
 		return base_query
@@ -53,6 +53,7 @@ class PostListView(ListView):
 			'author': self.request.GET.get('author') if self.request.GET.get('author') else ''
 		}
 		print(context['form'])
+		print(context['categories'][0])
 		return context
 
 
