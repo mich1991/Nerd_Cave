@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Nerd Cave - All about games {% endblock %}
+{% block hero-image-url %}
+    url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
+{% endblock %}
+{% block hero-heading %}
+    All Posts
+{% endblock %}
+{% block hero-subheading %}
+{# Subheading optional    #}
+{% endblock %}
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-9">
+            {% for post in post_list %}
+                    <div class="col-4">
+                        <div class="card border-primary col p-0">
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title}}</h5>
+                                <p class="card-text">{{ post.excerpt}}</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <span class="badge bg-info float-end">{{ post.category }}</span>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+            {% if is_paginated %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-3">
+    {#  filters goes here      #}
+    </div>
+</div>
+{% endblock %}

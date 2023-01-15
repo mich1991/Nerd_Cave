@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
 from .models import Post
 
 
@@ -27,9 +27,10 @@ class HomePageView(View):
 		return render(request, 'blog/index.html', ctx)
 
 
-class PostListView(View):
-	def get(self):
-		pass
+class PostListView(ListView):
+	model = Post
+	template_name = 'blog/post_list'
+	paginate_by = 12
 
 
 class PostDetailView(View):
