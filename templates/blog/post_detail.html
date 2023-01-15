@@ -59,6 +59,10 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-secondary mt-3">Submit</button>
                         </form>
+                        {% else %}
+                            <h4 class="text-center">Sign In to leave a comment!</h4>
+                            <p class="text-center"><a href="{% url 'account_login' %}">Sign In</a></p>
+                            <p>If you have not created an account yet, then please <a href="{% url 'account_signup' %}">sign up</a> first.</p>
                         {% endif %}
                     </div>
                 </div>
