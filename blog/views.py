@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, ListView
 from .models import Post, Category
+from .forms import CommentForm
 from django.contrib.auth.models import User
 
 
@@ -62,9 +63,35 @@ class PostDetailView(View):
 	def get(self, request, slug):
 		queryset = Post.objects.filter(status=1)
 		post = get_object_or_404(queryset, slug=slug)
+		comments = post.comments.order_by("-created_on")
+
 		ctx = {
 			'post': post,
+			'comments': comments,
+			'comment_form': CommentForm()
 		}
+		return render(request, 'blog/post_detail.html', ctx)
+
+	def post(self, request, slug):
+
+		post = get_object_or_404(Post, slug=slug)
+		comments = post.comments.order_by("-created_on")
+
+		comment_form = CommentForm(data=request.POST)
+		if comment_form.is_valid():
+			comment_form.instance.user = request.user
+			comment = comment_form.save(commit=False)
+			comment.post = post
+			comment.save()
+			comment_form = CommentForm()
+		else:
+			comment_form = CommentForm()
+
+		ctx = {
+				'post': post,
+				'comments': comments,
+				'comment_form': comment_form
+			}
 		return render(request, 'blog/post_detail.html', ctx)
 
 

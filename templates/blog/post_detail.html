@@ -27,11 +27,42 @@
     </div>
     <div class="row">
 {#         View Posted Comments Section #}
-        <div class="col-lg-6">
+        <div class="col-lg-9 mb-4 mt-3">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h3>Comments:</h3>
+                    {% for comment in comments %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            {{ comment.user }}
+                            <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        {{ comment.text | linebreaks }}
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 {#         Post a Comment Section #}
-        <div class="col-lg-6">
-
+        <div class="col-lg-3 mb-4 mt-3 ">
+            <div class="row">
+                <div class="card border-light mx-2">
+                    <div class="card-body">
+                        {% if user.is_authenticated %}
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form method="post">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary mt-3">Submit</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
