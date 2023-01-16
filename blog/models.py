@@ -27,7 +27,6 @@ class Post(models.Model):
 	likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 	created_on = models.DateTimeField(auto_now_add=True)
 	updated_on = models.DateTimeField(auto_now=True)
-	status = models.IntegerField(choices=STATUS, default=0)
 
 	class Meta:
 		ordering = ['-created_on']
@@ -47,5 +46,15 @@ class Comment(models.Model):
 	email = models.EmailField()
 	created_on = models.DateTimeField(auto_now_add=True)
 	updated_on = models.DateTimeField(auto_now=True)
+
+
+class Contact(models.Model):
+	email = models.EmailField()
+	name = models.CharField(max_length=20)
+	message = models.TextField()
+	date = models.DateTimeField(auto_created=True, auto_now=True)
+
+	def __str__(self):
+		return f'{self.name} : {self.email}'
 
 

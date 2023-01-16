@@ -8,5 +8,5 @@ urlpatterns = [
 	path('posts/<slug:slug>', PostDetailView.as_view(), name='post_detail'),
 	path('like/<slug:slug>', PostLikeView.as_view(), name='post_like'),
 	path('about-us', AboutPageView.as_view(), name='about_us'),
-	path('contact-us', ContactPageView.as_view(), name='contact_us')
+	path('contact-us', ContactPageView.as_view(), name='contact_us'),
 ]

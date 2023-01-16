@@ -1,7 +1,9 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, ListView
 from .models import Post, Category
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 from django.contrib.auth.models import User
 
 
@@ -95,6 +97,26 @@ class PostDetailView(View):
 		return render(request, 'blog/post_detail.html', ctx)
 
 
+class ContactPageView(View):
+	def get(self, request):
+		form = ContactForm()
+		ctx = {'form': form}
+		return render(request, 'blog/contact.html', ctx)
+
+	def post(self, request):
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			form.save()
+			form = ContactForm()
+			ctx = {
+				'form': form,
+				'success': True
+				}
+			return render(request, 'blog/contact.html', ctx)
+		ctx = {'form': form}
+		return render(request, 'blog/contact.html', ctx)
+
+
 class PostLikeView(View):
 	def get(self):
 		pass
@@ -104,7 +126,3 @@ class AboutPageView(View):
 	def get(self):
 		pass
 
-
-class ContactPageView(View):
-	def get(self):
-		pass
