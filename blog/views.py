@@ -115,12 +115,29 @@ class ContactPageView(View):
 		return render(request, 'blog/contact.html', ctx)
 
 
+class AboutPageView(View):
+	def get(self):
+		pass
+
+
 class PostLikeView(View):
 	def get(self):
 		pass
 
 
-class AboutPageView(View):
+# @login_required
+class AuthorPostListView(View):
 	def get(self):
 		pass
 
+
+# @login_required
+class AuthorAddPostView(View):
+	def get(self):
+		pass
+
+
+# @login_required
+class AuthorEditPostView(View):
+	def get(self):
+		pass
