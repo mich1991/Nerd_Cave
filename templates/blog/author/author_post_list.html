@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Nerd Cave - All about games {% endblock %}
+{% block hero-image-url %}
+    url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
+{% endblock %}
+{% block hero-heading %}
+    Author Panel
+{% endblock %}
+{% block hero-subheading %}
+    See your old posts, edit them, delete or add new ones
+{% endblock %}
+{% block content %}
+    <div class="container-fluid my-4">
+        <div class="row">
+            <div class="col-lg-9">
+                <ul class="list-group">
+                        <table class="table table-dark table-striped table-hover">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Updated on</th>
+                                    <th scope="col">Created on</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for post in post_list %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ post.title }}</td>
+                                    <td>{{ post.category }}</td>
+                                    <td>{% if post.status == 1 %}Published{% else %}Draft{% endif %}</td>
+                                    <td>{{ post.updated_on }}</td>
+                                    <td>{{ post.created_on }}</td>
+                                    <td>
+                                        <a href="{% url 'author_edit_post' post.id %}"><i class="fa-solid fa-pen"></i></a>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{% url 'author_delete_post' post.id %}">
+                                            {% csrf_token %}
+                                            <button style="border: none; background: transparent" type="submit"><i class="fa-solid fa-trash text-danger"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <div class="card border-primary">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="text-center">Add New Post</h3>
+                        <a class="btn btn-lg btn-light" href="{% url 'author_add_post' %}">Create Post</a>
+                    </div>
+                </div>
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <h3 class="text-center">Search</h3>
+                        <form method="get" class="d-flex flex-column gap-2">
+                            <div class="form-group">
+                                <label for="title">Post Title</label>
+                                <input type="text" class="form-control" name="title" value="{{ form.title }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select class="form-control" name="category">
+                                    <option value=""></option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.name }}" {% if form.category == category.name %} selected {% endif %} >
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

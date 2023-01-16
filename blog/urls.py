@@ -9,6 +9,7 @@ urlpatterns = [
 	path('about-us', views.AboutPageView.as_view(), name='about_us'),
 	path('contact-us', views.ContactPageView.as_view(), name='contact_us'),
 	path('author-panel', views.AuthorPostListView.as_view(), name='author_post_list'),
-	path('author-panel/add', views.AuthorAddPostView.as_view(), name='author_post_list'),
-	path('author-panel/edit/<pk:id>', views.AuthorEditPostView.as_view(), name='author_post_list')
+	path('author-panel/add', views.AuthorAddPostView.as_view(), name='author_add_post'),
+	path('author-panel/edit/<int:id>', views.AuthorEditPostView.as_view(), name='author_edit_post'),
+	path('author-panel/delete/<int:id>', views.AuthorEditPostView.as_view(), name='author_delete_post')
 ]

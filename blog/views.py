@@ -1,5 +1,5 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, ListView
 from .models import Post, Category
 from .forms import CommentForm, ContactForm
@@ -31,7 +31,7 @@ class HomePageView(View):
 
 class PostListView(ListView):
 	model = Post
-	template_name = 'blog/post_list'
+	template_name = 'blog/post_list.html'
 	paginate_by = 12
 
 	def get_queryset(self, **kwargs):
@@ -53,8 +53,6 @@ class PostListView(ListView):
 			'category': self.request.GET.get('category') if self.request.GET.get('category') else '',
 			'author': self.request.GET.get('author') if self.request.GET.get('author') else ''
 		}
-		print(context['form'])
-		print(context['categories'][0])
 		return context
 
 
@@ -125,10 +123,32 @@ class PostLikeView(View):
 		pass
 
 
-# @login_required
-class AuthorPostListView(View):
-	def get(self):
-		pass
+# @user_passes_test(lambda u: u.is_staff, login_url='/')
+class AuthorPostListView(ListView):
+	"""GET List of posts that's belongs to an author"""
+	model = Post
+	template_name = 'blog/author/author_post_list.html'
+	paginate_by = 10
+
+	def get_queryset(self, **kwargs):
+		url_query = self.request.GET
+		base_query = super().get_queryset().filter(author=self.request.user)
+		if self.request.user.is_superuser:
+			base_query = super().get_queryset().filter()
+		if url_query.get('title'):
+			base_query = base_query.filter(title__icontains=url_query.get('title'))
+		if url_query.get('category'):
+			base_query = base_query.filter(category__name=url_query.get('category'))
+		return base_query
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['categories'] = Category.objects.all()
+		context['form'] = {
+			'title': self.request.GET.get('title') if self.request.GET.get('title') else '',
+			'category': self.request.GET.get('category') if self.request.GET.get('category') else '',
+		}
+		return context
 
 
 # @login_required
