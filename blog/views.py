@@ -1,10 +1,8 @@
-import datetime
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, ListView
 from .models import Post, Category
 from .forms import CommentForm, ContactForm
-from django.contrib.auth.models import User
 
 
 class HomePageView(View):
@@ -117,6 +115,7 @@ class ContactPageView(View):
 		return render(request, 'blog/contact.html', ctx)
 
 
+@login_required
 class PostLikeView(View):
 	def get(self):
 		pass
