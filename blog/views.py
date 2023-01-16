@@ -115,7 +115,6 @@ class ContactPageView(View):
 		return render(request, 'blog/contact.html', ctx)
 
 
-@login_required
 class PostLikeView(View):
 	def get(self):
 		pass
