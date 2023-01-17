@@ -22,6 +22,9 @@
             </button>
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav ms-auto me-5">
+                    {% if user.is_staff %}
+                    <a class="nav-link {% if request.resolver_match.url_name == 'author_post_list' %}active{% endif %}" aria-current="page" href="{% url 'author_post_list' %}">Author Panel</a>
+                    {% endif %} 
                     <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
                     <a class="nav-link {% if request.resolver_match.url_name == 'posts_list' %}active{% endif %}" aria-current="page" href="{% url 'posts_list' %}">All Posts</a>
                     <a class="nav-link {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}" aria-current="page" href="{% url 'about_us' %}">About</a>
