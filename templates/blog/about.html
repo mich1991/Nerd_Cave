@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css_files %}
+     <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+{% endblock %}
+{% block title %} Nerd Cave - {{ post.title}} {% endblock %}
+{% block hero-image-url %}
+    url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
+{% endblock %}
+{% block hero-heading %}
+    About Us
+{% endblock %}
+{% block hero-subheading %}
+    NerdCave Squad
+{% endblock %}
+{% block content %}
+<div class="container my-4">
+   <div class="row d-flex justify-content-center align-items-center">
+       <div class="col-md-6">
+           <h3 class="mb-4">Welcome to our nerd blog all about consoles, video games, and controllers!</h3>
+           <p>
+               We are a team of passionate gamers who love to share our
+               knowledge and experiences with the gaming community.
+           </p>
+           <p>
+               Our blog covers a wide range of topics related to console gaming, including the latest releases, upcoming titles, and reviews of the most popular games. We also dive into the history of console gaming, taking a look at the evolution of consoles and the impact they've had on the industry.
+           </p>
+           <p>
+             In addition to the latest news and reviews, we also offer in-depth guides on the different types of console games available, such as first-person shooters, sports games, role-playing games, and more. We also discuss the latest trends and advancements in console gaming technology, such as virtual reality and streaming services.
+           </p>
+           <p>
+               We also cover the controllers that are used to play console games. From the classic gamepad to the latest motion-sensing controllers, we explore the design, buttons, and features of each controller, as well as their advantages and disadvantages for different types of games. Our blog also provides tips for players on how to use controllers effectively for the best gaming experience.
+           </p>
+           <p>
+               Thank you for visiting our blog, and we hope you enjoy reading our content as much as we enjoy writing it. Happy gaming!
+           </p>
+       </div>
+       <div class="col-md-6">
+            <img src="https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875466/maurice-sahl-EfQgEyzzsBM-unsplash_j6i6zl.jpg" class="img-fluid" alt="...">
+       </div>
+   </div>
+</div>
+{% endblock %}

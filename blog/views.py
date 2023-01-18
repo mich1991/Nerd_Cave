@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, ListView, DeleteView
+from django.views.generic import View, ListView, DeleteView, TemplateView
 from django.utils.text import slugify
 from django.urls import reverse
 from .models import Post, Category
@@ -115,9 +115,8 @@ class ContactPageView(View):
 		return render(request, 'blog/contact.html', ctx)
 
 
-class AboutPageView(View):
-	def get(self):
-		pass
+class AboutPageView(TemplateView):
+	template_name = 'blog/about.html'
 
 
 class PostLikeView(View):
