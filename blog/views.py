@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, DeleteView
 from django.utils.text import slugify
+from django.urls import reverse
 from .models import Post, Category
 from .forms import CommentForm, ContactForm, PostForm
 
@@ -206,3 +207,14 @@ class AuthorEditPostView(View):
 			'edit': True,
 		}
 		return render(request, 'blog/author/author_add_post.html', ctx)
+
+
+class AuthorDeletePostView(DeleteView):
+	template_name = 'blog/author/author_delete_post.html'
+
+	def get_object(self):
+		pk = self.kwargs.get('pk')
+		return get_object_or_404(Post, pk=pk)
+
+	def get_success_url(self):
+		return reverse('author_post_list')
