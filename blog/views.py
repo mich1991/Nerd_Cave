@@ -1,10 +1,14 @@
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.decorators import method_decorator
 from django.views.generic import View, ListView, DeleteView, TemplateView
 from django.utils.text import slugify
 from django.urls import reverse
 from .models import Post, Category
 from .forms import CommentForm, ContactForm, PostForm
+
+# Grants access only for staff members
+decorators = [user_passes_test(lambda u: u.is_staff, login_url='home',)]
 
 
 class HomePageView(View):
@@ -124,7 +128,7 @@ class PostLikeView(View):
 		pass
 
 
-# @user_passes_test(lambda u: u.is_staff, login_url='/')
+@method_decorator(decorators, name='dispatch')
 class AuthorPostListView(ListView):
 	"""GET List of posts that's belongs to an author"""
 	model = Post
@@ -152,7 +156,7 @@ class AuthorPostListView(ListView):
 		return context
 
 
-# @login_required
+@method_decorator(user_passes_test(lambda u: u.is_staff, login_url='home',), name='dispatch')
 class AuthorAddPostView(View):
 	def get(self, request):
 		ctx = {
@@ -177,7 +181,7 @@ class AuthorAddPostView(View):
 		return render(request, 'blog/author/author_add_post.html', ctx)
 
 
-# @login_required
+@method_decorator(user_passes_test(lambda u: u.is_staff, login_url='home',), name='dispatch')
 class AuthorEditPostView(View):
 	def get(self, request, pk):
 		post = Post.objects.get(pk=pk)
@@ -208,6 +212,7 @@ class AuthorEditPostView(View):
 		return render(request, 'blog/author/author_add_post.html', ctx)
 
 
+@method_decorator(user_passes_test(lambda u: u.is_staff, login_url='/',), name='dispatch')
 class AuthorDeletePostView(DeleteView):
 	template_name = 'blog/author/author_delete_post.html'
 
