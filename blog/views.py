@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, ListView
+from django.utils.text import slugify
 from .models import Post, Category
-from .forms import CommentForm, ContactForm
+from .forms import CommentForm, ContactForm, PostForm
 
 
 class HomePageView(View):
@@ -153,11 +154,30 @@ class AuthorPostListView(ListView):
 
 # @login_required
 class AuthorAddPostView(View):
-	def get(self):
-		pass
+	def get(self, request):
+		ctx = {
+			'form': PostForm()
+		}
+		return render(request, 'blog/author/author_add_post.html', ctx)
+
+	def post(self, request):
+		form = PostForm(request.POST, request.FILES)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.slug = slugify(post.title)
+			post.author = request.user
+			post.save()
+			form = PostForm()
+			ctx = {
+				'form': form,
+				'success': True
+			}
+			return render(request, 'blog/author/author_add_post.html', ctx)
+		ctx = {'form': form}
+		return render(request, 'blog/author/author_add_post.html', ctx)
 
 
 # @login_required
 class AuthorEditPostView(View):
-	def get(self):
+	def get(self, request):
 		pass
