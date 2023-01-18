@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block css_files %}
-     <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'post_detail.css' %}">
 {% endblock %}
 {% block title %} Nerd Cave - {{ post.title}} {% endblock %}
 {% block hero-image-url %}
@@ -15,59 +15,89 @@
     {{ post.excerpt}}
 {% endblock %}
 {% block content %}
-<div class="container my-4">
-    <img src="{{post.image.url}}" class="img-fluid" alt="Responsive image">
-    <div>
-        {{ post.content | safe }}
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-{#         View Posted Comments Section #}
-        <div class="col-lg-9 mb-4 mt-3">
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h3>Comments:</h3>
-                    {% for comment in comments %}
-                    <div class="comments" style="padding: 10px;">
-                        <p class="font-weight-bold">
-                            {{ comment.user }}
-                            <span class=" text-muted font-weight-normal">
+    <div class="container my-4">
+        <main>
+            <article>
+                <img src="{{post.image.url}}" class="img-fluid" alt="Responsive image">
+                <div>
+                    {{ post.content | safe }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <hr>
+                    </div>
+                </div>
+            </article>
+            {#         View Posted Comments Section #}
+            <section class="row">
+                <div class="col-lg-9 mb-4 mt-3">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h3>Comments:</h3>
+                            {% for comment in comments %}
+                                <div class="comments" style="padding: 10px;">
+                                    <p class="font-weight-bold">
+                                        {{ comment.user }}
+                                        <span class=" text-muted font-weight-normal">
                                 {{ comment.created_on }}
                             </span> wrote:
-                        </p>
-                        {{ comment.text | linebreaks }}
-                    </div>
-                    <hr>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-{#         Post a Comment Section #}
-        <div class="col-lg-3 mb-4 mt-3 ">
-            <div class="row">
-                <div class="card border-light mx-2">
-                    <div class="card-body">
-                        {% if user.is_authenticated %}
-                        <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
-                        <form method="post">
-                            {{ comment_form | crispy }}
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary mt-3">Submit</button>
-                        </form>
-                        {% else %}
-                            <h4 class="text-center">Sign In to leave a comment!</h4>
-                            <p class="text-center"><a href="{% url 'account_login' %}">Sign In</a></p>
-                            <p>If you have not created an account yet, then please <a href="{% url 'account_signup' %}">sign up</a> first.</p>
-                        {% endif %}
+                                    </p>
+                                    {{ comment.text | linebreaks }}
+                                </div>
+                                <hr>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                {#         Post a Comment Section #}
+                <div class="col-lg-3 mb-4 mt-3 ">
+                    <aside class="row">
+                        <div class="card border-secondary mx-2 mb-1">
+                            <h4 class="text-center">Post Reactions</h4>
+                            <div class="d-flex justify-content-evenly">
+                                <div>
+                                    <div class="d-flex align-items-center">
+                                        <form method='post' action="{% url 'post_like' post.slug %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="pb-1 btn-clear">
+                                                {% if liked %}
+                                                    <i class="fa-solid fa-thumbs-up text-success"></i>
+                                                {% else %}
+                                                    <i class="fa-regular fa-thumbs-up"></i>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+                                        <span>{{ post.likes.count }}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <i class="fa-regular fa-comments"></i>
+                                    <span>{{ post.comments.count }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <div class="row">
+                        <div class="card border-light mx-2">
+                            <div class="card-body">
+                                {% if user.is_authenticated %}
+                                    <h3>Leave a comment:</h3>
+                                    <p>Posting as: {{ user.username }}</p>
+                                    <form method="post">
+                                        {{ comment_form | crispy }}
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary mt-3">Submit</button>
+                                    </form>
+                                {% else %}
+                                    <h4 class="text-center">Sign In to leave a comment!</h4>
+                                    <p class="text-center"><a href="{% url 'account_login' %}">Sign In</a></p>
+                                    <p>If you have not created an account yet, then please <a href="{% url 'account_signup' %}">sign up</a> first.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-</div>
 {% endblock %}

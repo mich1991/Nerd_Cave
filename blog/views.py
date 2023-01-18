@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import user_passes_test, login_required
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, reverse
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import View, ListView, DeleteView, TemplateView
 from django.utils.text import slugify
-from django.urls import reverse
 from .models import Post, Category
 from .forms import CommentForm, ContactForm, PostForm
 
@@ -14,9 +14,9 @@ decorators = [user_passes_test(lambda u: u.is_staff, login_url='home',)]
 class HomePageView(View):
 	def get(self, request):
 		published_posts = Post.objects.filter(status='1')
-		ps5_latest_posts = published_posts.filter(category__name='PS5').order_by('created_on')[:4]
-		xbox_latest_posts = published_posts.filter(category__name='XBOX').order_by('created_on')[:4]
-		switch_latest_posts = published_posts.filter(category__name='SWITCH').order_by('created_on')[:4]
+		ps5_latest_posts = published_posts.filter(category__name='PS5').order_by('-created_on')[:4]
+		xbox_latest_posts = published_posts.filter(category__name='XBOX').order_by('-created_on')[:4]
+		switch_latest_posts = published_posts.filter(category__name='SWITCH').order_by('-created_on')[:4]
 
 		ctx = {
 			'ps5': {
@@ -68,11 +68,15 @@ class PostDetailView(View):
 		queryset = Post.objects.filter(status=1)
 		post = get_object_or_404(queryset, slug=slug)
 		comments = post.comments.order_by("-created_on")
+		liked = False
+		if post.likes.filter(id=self.request.user.id).exists():
+			liked = True
 
 		ctx = {
 			'post': post,
 			'comments': comments,
-			'comment_form': CommentForm()
+			'comment_form': CommentForm(),
+			'liked': liked
 		}
 		return render(request, 'blog/post_detail.html', ctx)
 
@@ -80,6 +84,9 @@ class PostDetailView(View):
 
 		post = get_object_or_404(Post, slug=slug)
 		comments = post.comments.order_by("-created_on")
+		liked = False
+		if post.likes.filter(id=self.request.user.id).exists():
+			liked = True
 
 		comment_form = CommentForm(data=request.POST)
 		if comment_form.is_valid():
@@ -94,8 +101,9 @@ class PostDetailView(View):
 		ctx = {
 				'post': post,
 				'comments': comments,
-				'comment_form': comment_form
-			}
+				'comment_form': comment_form,
+				'liked': liked
+		}
 		return render(request, 'blog/post_detail.html', ctx)
 
 
@@ -123,9 +131,19 @@ class AboutPageView(TemplateView):
 	template_name = 'blog/about.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class PostLikeView(View):
-	def get(self):
-		pass
+	"""
+	Likes only works for log in user, if not logged in would be redirected by decorator
+	"""
+	def post(self, request, slug):
+		post = get_object_or_404(Post, slug=slug)
+
+		if post.likes.filter(id=request.user.id).exists():
+			post.likes.remove(request.user)
+		else:
+			post.likes.add(request.user)
+		return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
 @method_decorator(decorators, name='dispatch')
