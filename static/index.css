@@ -1,0 +1,13 @@
+#latest-post{
+    height: 45rem;
+}
+#latest-post .card-img-top{
+    height: 20rem;
+}
+.card-recent{
+    height: 14.6rem;
+}
+.card-recent .card-img{
+    height: 14.4rem;
+    filter: brightness(0.5);
+}

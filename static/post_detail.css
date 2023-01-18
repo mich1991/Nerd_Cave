@@ -5,3 +5,8 @@ img{
 textarea {
     width: 100%;
 }
+
+.btn-clear{
+    background: none;
+    border: none;
+}
