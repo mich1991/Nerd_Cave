@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block title %}Nerd Cave - Add Post{% endblock %}
+{% block title %}Nerd Cave - {% if edit %}Edit Post {{ form.title.value }} {% else %}Add Post{% endif %}{% endblock %}
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'author_post.css' %}">
 {% endblock %}
@@ -11,10 +11,14 @@
     url('https://res.cloudinary.com/dxtsy4mcr/image/upload/v1672875464/carl-raw-m3hn2Kn5Bns-unsplash_jqfrri.jpg')
 {% endblock %}
 {% block hero-heading %}
-    Add Post
+    {% if edit %}Edit Post{% else %}Add Post{% endif %}
 {% endblock %}
 {% block hero-subheading %}
-    {% if success %}Post added successfully{% else %}“We are all apprentices in a craft where no one ever becomes a master.”—Ernest Hemingway{% endif %}
+    {% if success %}
+        Post {% if edit %}edited{% else %}added{% endif %} successfully
+    {% elif edit%}
+        Currently editing post : " {{ form.title.value }} "
+    {% else %}“We are all apprentices in a craft where no one ever becomes a master.”—Ernest Hemingway{% endif %}
 {% endblock %}
 
 
@@ -29,7 +33,7 @@
                     {% if field.name != 'image' %}
                     {{ field | as_crispy_field }}
                     {% else %}
-                    {{ field.name | capfirst }}*
+                    <p>{{ field.name | capfirst }}*</p>
                     {{ field }}
                     {% endif %}
                     {% endfor %}

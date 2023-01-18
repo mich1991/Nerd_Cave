@@ -179,5 +179,30 @@ class AuthorAddPostView(View):
 
 # @login_required
 class AuthorEditPostView(View):
-	def get(self, request):
-		pass
+	def get(self, request, pk):
+		post = Post.objects.get(pk=pk)
+		ctx = {
+			'form': PostForm(instance=post),
+			'edit': True,
+		}
+		return render(request, 'blog/author/author_add_post.html', ctx)
+
+	def post(self, request, pk):
+		post_instance = Post.objects.get(pk=pk)
+		form = PostForm(request.POST, request.FILES, instance=post_instance)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.slug = slugify(post.title)
+			post.author = request.user
+			post.save()
+			ctx = {
+				'form': form,
+				'success': True,
+				'edit': True,
+			}
+			return render(request, 'blog/author/author_add_post.html', ctx)
+		ctx = {
+			'form': form,
+			'edit': True,
+		}
+		return render(request, 'blog/author/author_add_post.html', ctx)

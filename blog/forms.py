@@ -18,8 +18,7 @@ class ContactForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
-		# exclude = ('likes', 'author', 'slug',)
-		exclude = ('likes',)
+		exclude = ('likes', 'author', 'slug',)
 		widgets = {
 			'content': SummernoteWidget(),
 		}
