@@ -15,7 +15,7 @@
 {% endblock %}
 {% block content %}
     {% if ps5.latest_post %}
-        <section id="latest-posts" class="container mt-4">
+        <section id="latest-posts" class="container-lg mt-4">
             <hr>
             <h2>PS5</h2>
             <hr>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-5">
                     {% for post in ps5.recent_posts %}
                         <div class="card border-primary p-0 mb-2 card-recent">
                             <img src="{{ post.image.url }}" class="card-img" alt="{{post.slug}}">
@@ -76,7 +76,7 @@
         </section>
     {% endif %}
     {% if xbox.latest_post %}
-        <section id="latest-posts" class="container mt-4">
+        <section id="latest-posts" class="container-lg mt-4">
             <hr>
             <h2>XBOX</h2>
             <hr>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-5">
                     {% for post in xbox.recent_posts %}
                         <div class="card border-primary p-0 mb-2 card-recent">
                             <img src="{{ post.image.url }}" class="card-img" alt="{{post.slug}}">
@@ -137,7 +137,7 @@
         </section>
     {% endif %}
     {% if switch.latest_post %}
-        <section id="latest-posts" class="container mt-4">
+        <section id="latest-posts" class="container-lg mt-4">
             <hr>
             <h2>SWITCH</h2>
             <hr>
@@ -167,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-5">
                     {% for post in switch.recent_posts %}
                         <div class="card border-primary p-0 mb-2 card-recent">
                             <img src="{{ post.image.url }}" class="card-img" alt="{{post.slug}}">
