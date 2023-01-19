@@ -33,6 +33,11 @@
                 </div>
             </article>
             {#         View Posted Comments Section #}
+            {% if success %}
+                <div class="alert alert-secondary" role="alert">
+                Comment added successfully.
+                </div>
+            {% endif %}
             <section class="row">
                 <div class="col-lg-9 mb-4 mt-3">
                     <div class="card border-primary">

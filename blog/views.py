@@ -85,9 +85,9 @@ class PostDetailView(View):
 		post = get_object_or_404(Post, slug=slug)
 		comments = post.comments.order_by("-created_on")
 		liked = False
+		success = False
 		if post.likes.filter(id=self.request.user.id).exists():
 			liked = True
-
 		comment_form = CommentForm(data=request.POST)
 		if comment_form.is_valid():
 			comment_form.instance.user = request.user
@@ -95,14 +95,16 @@ class PostDetailView(View):
 			comment.post = post
 			comment.save()
 			comment_form = CommentForm()
+			success = True
 		else:
-			comment_form = CommentForm()
+			comment_form = CommentForm(data=request.POST)
 
 		ctx = {
 				'post': post,
 				'comments': comments,
 				'comment_form': comment_form,
-				'liked': liked
+				'liked': liked,
+				'success': success
 		}
 		return render(request, 'blog/post_detail.html', ctx)
 
