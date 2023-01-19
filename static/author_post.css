@@ -1,0 +1,3 @@
+.table-dark tr:hover{
+    --bs-table-hover-bg: #3b31a0 !important;
+}
