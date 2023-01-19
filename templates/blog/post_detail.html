@@ -12,9 +12,7 @@
     {{ post.title}}
 {% endblock %}
 {% block hero-subheading %}
-    <p>{{ post.excerpt}}</p>
-    <hr>
-    <p class="text-end">{{ post.created_on | date }} - {{ post.author }}</p>
+    {{ post.excerpt}}
 {% endblock %}
 {% block content %}
     <div class="container my-4">
@@ -27,6 +25,8 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <hr>
+                        <p class="text-end">{{ post.author }} - {{ post.created_on | date }}</p>
                         <hr>
                     </div>
                 </div>

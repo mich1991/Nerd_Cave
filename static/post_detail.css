@@ -23,5 +23,5 @@ textarea {
 
 .card-comments{
     max-height: 32.2rem;
-    overflow: scroll;
+    overflow: auto;
 }
