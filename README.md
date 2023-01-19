@@ -206,6 +206,9 @@ Add another button with icon of thumb down and create separate table in db to st
 Also I am planning to add in Author Panel upon clicking delete on a post instead of redirecting to separate page it would be
 way better if upon clicking button bootstrap modal would popup with a confirmation. 
 
+Add more images that would suit my 'Hero' header. Ideally 1 image per page. For blog posts featured image supposed to 
+be a header but that would required cropping images, changing brightness and etc.
+
 
 ## Technologies Used <a name="tech-used"></a>
 
@@ -236,8 +239,85 @@ way better if upon clicking button bootstrap modal would popup with a confirmati
     * Heroku has been used as a hosting provider with connection to Github repository.
 * [Github](https://github.com/)
     * Github was used to create a repository which was connected to heroku.
+* [HTMLWasher](https://www.htmlwasher.com/)
+  * Content for posts was borrowed from other blog websites which are mentioned in Credits.
+  * They required cleaning of unnecessary html tags and css classes
+* [PyCharm](https://www.jetbrains.com/pycharm/)
+    * IDE used for that project.
+    * Wanted to try different IDE than Gitpod or VS code.
 
 
+
+## Testing <a name="testing"></a>
+
+Testing for this project was completed manually.
+
+### User Stories Testing <a name="user-testing"></a>
+
+User Stories Can be found [here](https://github.com/mich1991/Nerd_Cave/issues?q=is%3Aissue+is%3Aclosed)
+. Each User Stories has list of tasks attached to it in description.
+
+Iteration for those User Stories can be found [here](https://github.com/mich1991/Nerd_Cave/milestones?state=closed)
+
+Github project page can be found [here](https://github.com/users/mich1991/projects/5)
+
+#### US-1. As a user, I can quickly identify what the main blog is about so that I don't have to waste time around:
+* First thing that user sees upon visiting website is a Hero header with a title 'Latest news from console world . All in one place'.
+* Hero has arcade machines as background image.
+* Simple navbar that has everything blog would need.
+* Home page has each of categories on display and 4 of the recent posts from each of categories to show.
+#### US-2. As a user, I can browse through the list of posts to find something interesting for me or reread some old posts:
+* All posts page has a list of posts that are paginating per 12 posts
+* Searchbar allows user to search posts by the category, title or favourite Author name. 
+#### US-3. As a user, I can read the whole post on a separate page, so that I can enjoy the content:
+* Post detail page allows user the read the whole content and even more but that would be covered in another user story.
+#### US-4. As a user, I can like/dislike a post so that share my opinion.:
+* Post detail page allows user to react to a post with a 'Like' button at the bottom of the post
+above comment form. User can either like or unlike the post if changed mind.
+* Amount of posts likes can be seen on every page with post cards (home page, all posts) and also on the post detail page
+* Liking posts is only available to log in users. If not logged in and tried to like the post user is being
+redirected to Sign In page.
+#### US-5. As a user, I can add comments to each post so that I can share my opinion with other readers.:
+* Each user can add comment to a post at the bottom of post detail page if signed in.
+* Each user can read all the comments to a post at the bottom of the post detail page.
+* Each user can see total number of comments for each post on the post detail page
+plus on post card on home page & all posts page.
+#### US-6. As a user, I can register to blog so that I can take active contributions to liking/commenting on posts:
+* Sign Up and Sign In is clearly visible in navbar. As it's makes the most of sense they are last 2 items
+in the navbar.
+* Upon Sign Up username and password is required but email is optional.
+* Sign In is simple and upon login in user is redirected to home page.
+* If user is signed in navbar is getting changed. Sign Up/Sign In option are replaced with Logout route.
+* Also with correct permission users might get access to Author Panel 
+#### US-7. As a user, I can add like or dislike to a post so that I can share my opinion on the article:
+* Due lack of time that functionality wasn't implemented.
+* User can only like or unlike the post. There is no way to dislike the post in current implementation.
+* Story got abandoned because it's not crucial to blog requirements.
+#### US-8. As a Site Admin, I can create, update or delete posts so that I can have control over the content on the website:
+* Site Admin has access to built in django admin panel where Admin can do all CRUD operations
+* Post adding also includes Summernote WYSIWYG editor. That allows Admin to create decent looking posts.
+* Summernote allows to append custom HTML for more experienced users.
+* Admin is able to promote users to Author by assigning them as staff_members. Doesn't have to 
+assign any other permission so Admin panel is safe.
+#### US-9. As a user, I can see the 'about page' so that I can learn more about the people behind that website.:
+* Navbar & Footer have a link to about page.
+* User can learn more about blog purpose and people behind it.
+#### US-10. As a user, I can send a message to site admins so that I can share my thoughts with the site owner(s):
+* User can access Contact page through navbar or footer.
+* User can fill the form to contact site Admin just by sharing email address , name and a message.
+* User can apply for Author position through Contact Form.
+#### US-11. As a Site Admin I can let other users become blog authors so that I can delegate some blog work to other people:
+* Admin can promote User to Author by adding permission as staff member
+* Author has access to custom Author Panel
+* Author Panel allows user to create new posts
+* Author Panel allows user to edit previous posts that were created by him
+* Author Panel allows user to delete previous posts that were created by him
+* Author Panel allows user to add status as a 'draft' for post so Author can come
+back to it later and finish.
+
+##### All user stories except US-7 which was abandoned due lack of time were implemented with satisfactory results
+
+### Validation Testing <a name="user-testing"></a>
 
 ```
 posts_used = {
