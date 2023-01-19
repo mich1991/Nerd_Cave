@@ -1,8 +1,8 @@
-#latest-post{
-    height: 45rem;
+.latest-post{
+    height: 45rem !important;
 }
-#latest-post .card-img-top{
-    height: 20rem;
+.latest-post .card-img-top{
+    height: 20rem !important;
 }
 .card-recent{
     height: 14.6rem;
