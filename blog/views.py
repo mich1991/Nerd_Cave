@@ -236,7 +236,8 @@ class AuthorDeletePostView(DeleteView):
 
 	def get_object(self):
 		pk = self.kwargs.get('pk')
-		return get_object_or_404(Post, pk=pk)
+		author_post = Post.objects.filter(author=self.request.user)
+		return get_object_or_404(author_post, pk=pk)
 
 	def get_success_url(self):
 		return reverse('author_post_list')
