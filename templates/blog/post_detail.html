@@ -14,8 +14,7 @@
 {% block hero-subheading %}
     <p>{{ post.excerpt}}</p>
     <hr>
-    <p class="text-end">{{ post.author }} </p>
-    <p class="text-end">C: {{ post.created_on | date }}</p>
+    <p class="text-end">{{ post.created_on | date }} - {{ post.author }}</p>
 {% endblock %}
 {% block content %}
     <div class="container my-4">
@@ -35,7 +34,7 @@
             <section class="row">
                 <div class="col-lg-9 mb-4 mt-3">
                     <div class="card border-primary">
-                        <div class="card-body">
+                        <div class="card-body card-comments">
                             <h3>Comments:</h3>
                             {% for comment in comments %}
                                 <div class="comments" style="padding: 10px;">
@@ -54,8 +53,8 @@
                 </div>
                 {#         Post a Comment Section #}
                 <div class="col-lg-3 mb-4 mt-3 ">
-                    <aside class="row">
-                        <div class="card border-secondary mx-2 mb-1">
+                    <aside class="row mx-1">
+                        <div class="card border-secondary mb-1">
                             <h4 class="text-center">Post Reactions</h4>
                             <div class="d-flex justify-content-evenly">
                                 <div>
@@ -80,8 +79,8 @@
                             </div>
                         </div>
                     </aside>
-                    <div class="row">
-                        <div class="card border-light mx-2">
+                    <div class="row mx-1">
+                        <div class="card border-light">
                             <div class="card-body">
                                 {% if user.is_authenticated %}
                                     <h3>Leave a comment:</h3>
