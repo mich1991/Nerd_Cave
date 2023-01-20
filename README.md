@@ -15,6 +15,9 @@ Nerd Cave is a blog website focus on topics connected to video games consoles, m
         * [User Stories](#user-stories)
     * [Scope](#scope)
     * [Design](#design)
+    * [Skeleton](#skeleton)
+        * [Wireframes](#wireframes)
+        * [Database](#database)
 2. [Features](#features)    
    * [Database Structure](#database-structure)
    * [Current Features](#current-features)
@@ -91,10 +94,9 @@ To ensure a bit more custom experience than usual bootstrap websites provides I 
 
 That allowed to create simple but futuristic/cyber-punk-ish design.
 
+## Skeleton <a name="skeleton"></a>
 
-
-
-## Features <a name="features"></a>
+### Wireframes <a name="wireframes"></a>
 
 ### Database Structure <a name="database-structure"></a>
 
@@ -115,6 +117,9 @@ The database contains the following similar models to ones in CI course examples
 * __Category__: Contains information about post console related category. Has relation with the Post model
 * __Contact__: Contains information about form submitted by a site visitor, has no relationships with other models.
 * __User__: This is a Django built-in model, has a relationship with the Post model & Comment model.
+
+
+## Features <a name="features"></a>
 
 
 ### Current Features <a name="current-features"></a>
