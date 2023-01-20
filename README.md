@@ -23,7 +23,7 @@ Nerd Cave is a blog website focus on topics connected to video games consoles, m
 4. [Testing](#testing)
     * [User Stories Testing](#user-testing)
     * [Validation Testing](#validation-testing)
-    * [Automated Testing](#auto-testing)
+    * [Lighthouse Testing](#lighthouse-testing)
 5. [Deployment](#deployment)
 6. [Credits](#credits)
 
@@ -317,7 +317,7 @@ back to it later and finish.
 
 ##### All user stories except US-7 which was abandoned due lack of time were implemented with satisfactory results
 
-### Validation Testing <a name="user-testing"></a>
+### Validation Testing <a name="validation-testing"></a>
 
 #### 1. HTML - [W3C Markup Validation](https://validator.w3.org/)
 
@@ -346,7 +346,7 @@ back to it later and finish.
 12. Author Delete Post
 ![](docs/images/html_validation/author_panel_delete.png)
 
-#### 1. CSS - [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)
+#### 2. CSS - [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)
 1. app.css
 ![](docs/images/css_validation/app.png)
 2. auth.css
@@ -360,7 +360,61 @@ back to it later and finish.
 6. post_detail.css
 ![](docs/images/css_validation/post_detail.png)
 
+#### 3. Python - PyCharm
+PyCharm took care of quality of code and during development kept reminding me of PEP8 on submitting version
+no issues where detected.
 
+### Lighthouse Testing <a name="lighthouse-testing"></a>
+1. About Page
+    * Desktop
+   ![](docs/images/lighthouse/about-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/about-mobile.png)
+2. All Posts Page
+    * Desktop
+   ![](docs/images/lighthouse/all-posts-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/all-posts-mobile.png)
+3. Author Delete Post
+    * Desktop
+   ![](docs/images/lighthouse/author-delete-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/author-delete-mobile.png)
+4. Author Add/Edit Post (same view)
+    * Desktop
+   ![](docs/images/lighthouse/author-edit-add-post-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/author-edit-add-post-mobile.png)
+5. Author Posts List
+    * Desktop
+   ![](docs/images/lighthouse/author-post-list-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/author-post-list-mobile.png)
+6. Contact Page
+    * Desktop
+   ![](docs/images/lighthouse/contact-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/contact-mobile.png)
+7. Home Page
+    * Desktop
+   ![](docs/images/lighthouse/home-page-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/home-page-mobile.png)
+8. Sign In Page
+    * Desktop
+   ![](docs/images/lighthouse/sign-in-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/sign-inmobile.png)
+9. Sign Out Page
+    * Desktop
+   ![](docs/images/lighthouse/sign-out-desktop.png)
+    * Mobile
+   ![](docs/images/lighthouse/sign-out-mobile.png)
+10. Sign Up Page
+    * Desktop
+    ![](docs/images/lighthouse/sign-up-desktop.png)
+    * Mobile
+    ![](docs/images/lighthouse/sign-up-mobile.png)
 ```
 posts_used = {
     'xbox' :[
