@@ -415,6 +415,60 @@ no issues where detected.
     ![](docs/images/lighthouse/sign-up-desktop.png)
     * Mobile
     ![](docs/images/lighthouse/sign-up-mobile.png)
+
+## Deployment <a name="deployment"></a>
+
+The following steps were followed to deploy this project:
+### Cloudinary
+1. Create free account at [Cloudinary](https://cloudinary.com)
+2. Copy Cloudinary API Environment variable
+![](docs/images/deployment/cloudinary.png)
+
+### ElephantSQL
+1. Create free account at [ElephantSQL](https://elephantsql.com)
+2. Create New Instance of database. After it's done copy 'URL' whole path.
+![](docs/images/deployment/elephantSQL.png)
+
+
+### Heroku - deployment
+1. From the Heroku dashboard, select 'New' in the top right-hand corner.
+2. Click 'Create new app'.
+3. Enter the app name and choose region as Europe. 
+4. Click 'Create app'.
+5. Select the 'Settings' tab, and scroll down to 'Buildpacks'. 
+6. Add 'Python' and save changes.
+7. Scroll down to 'Config Vars' section, and add the 'KEY' and 'VALUE' for the CLOUDINARY_URL, DATABASE_URL and SECRET_KEY to run the app.
+8. Add Cloudinary URL to variable CLOUDINARY_URL, ElephantSQL URL to DATABASE_URL , SECRET_KEY can be any random string you want, 'sky-is-the-limit'
+9. At the top of the page, click on the 'Deploy' section.
+10. Select Github as deployment method.
+11. Select 'Connect to Github', and locate the repository name and click on 'Connect' to link my Heroku app to my Github repository code.
+12. Scroll further down, select 'Enable Automatic Deploys' and then select 'Deploy Branch'
+to deploy project.
+13. After it has successfully deployed a 'view' button appears on screen and when 
+clicked opens the deployed application.
+
+### Local deployment
+
+1. Clone/Fork repo
+2. Use ```pip3 install -r requirements.txt``` to install dependencies
+3. Create file named '.env' add following lines to it 
+    ```
+    SECRET_KEY= YOUR SECRET KEY GOES HERE
+    DATABASE_URL= ELEPHANTSQL URL GOES HERE
+    CLOUDINARY_URL= CLOUDINARY URL GOES HERE
+    ```
+4. After that project is ready to use.
+5. ``` python3 manage.py migrate```
+6. ``` python3 manage.py runserver```
+7. Enjoy!
+8. Don't forget about settings.py and DEBUG = True or False it's depends what's 
+the purpose of deployment, for production DEBUG = False for Development and learning DEBUG = True
+
+
+## Credits <a name="credits"></a>
+
+Content used in that project comes from different sources. All of them are mentioned below.
+
 ```
 posts_used = {
     'xbox' :[
@@ -440,4 +494,13 @@ posts_used = {
         'https://www.gameinformer.com/review/sonic-frontiers/into-the-wild-blue-yonder'
     ]
 }
+photos_used = [
+    'https://unsplash.com/photos/EfQgEyzzsBM',
+    'https://unsplash.com/photos/m3hn2Kn5Bns'
+]
+favicon = 'https://favicon.io/favicon-generator/'
 ```
+
+## Acknowledgements <a name="acknowledgements"></a>
+* I would like to thank my wife for supporting me all the time. 
+* My mentor, Chris Quinn, for being of great support and providing valuable guidance and feedback throughout this process.
