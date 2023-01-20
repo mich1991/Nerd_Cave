@@ -97,6 +97,10 @@ That allowed to create simple but futuristic/cyber-punk-ish design.
 ## Skeleton <a name="skeleton"></a>
 
 ### Wireframes <a name="wireframes"></a>
+![](docs/images/wireframes/wireframe1.jpg)![](docs/images/wireframes/wireframe2.jpg)![](docs/images/wireframes/wireframe3.jpg)
+I've managed to stick to my original wireframes hand drawing. I end up adding 3 more Views than 
+I expected to cover whole CRUD functionality. Author Panel came up at the end of the project.
+Mobile wireframes are only for phone devices, for tablets I tried to keep the design as close to desktop as possible.
 
 ### Database Structure <a name="database-structure"></a>
 
