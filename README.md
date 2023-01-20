@@ -319,6 +319,48 @@ back to it later and finish.
 
 ### Validation Testing <a name="user-testing"></a>
 
+#### 1. HTML - [W3C Markup Validation](https://validator.w3.org/)
+
+1. Home Page
+![](docs/images/html_validation/homepage.png)
+2. All Posts
+![](docs/images/html_validation/All_posts.png)
+3. Post Detail
+![](docs/images/html_validation/post_detail.png)
+4. About
+![](docs/images/html_validation/about_us.png)
+5. Contact
+![](docs/images/html_validation/contact_us.png)
+6. Sign Out
+![](docs/images/html_validation/log_out.png)
+7. Sign In
+![](docs/images/html_validation/log_in.png)
+8. Sign Up
+![](docs/images/html_validation/sign_up.png)
+9. Author Post list
+![](docs/images/html_validation/author_panel_list.png)
+10. Author Add Post
+![](docs/images/html_validation/author_panel_add.png)
+11. Author Edit Post
+![](docs/images/html_validation/author_panel_edit.png)
+12. Author Delete Post
+![](docs/images/html_validation/author_panel_delete.png)
+
+#### 1. CSS - [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)
+1. app.css
+![](docs/images/css_validation/app.png)
+2. auth.css
+![](docs/images/css_validation/auth.png)
+3. author_post.css
+![](docs/images/css_validation/author_post.png)
+4. index.css
+![](docs/images/css_validation/index.png)
+5. post_list.css
+![](docs/images/css_validation/post_list.png)
+6. post_detail.css
+![](docs/images/css_validation/post_detail.png)
+
+
 ```
 posts_used = {
     'xbox' :[
