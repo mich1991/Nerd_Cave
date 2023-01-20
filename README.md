@@ -322,42 +322,60 @@ back to it later and finish.
 #### 1. HTML - [W3C Markup Validation](https://validator.w3.org/)
 
 1. Home Page
+
 ![](docs/images/html_validation/homepage.png)
 2. All Posts
+
 ![](docs/images/html_validation/All_posts.png)
 3. Post Detail
+
 ![](docs/images/html_validation/post_detail.png)
 4. About
+
 ![](docs/images/html_validation/about_us.png)
 5. Contact
+
 ![](docs/images/html_validation/contact_us.png)
 6. Sign Out
+
 ![](docs/images/html_validation/log_out.png)
 7. Sign In
+
 ![](docs/images/html_validation/log_in.png)
 8. Sign Up
+
 ![](docs/images/html_validation/sign_up.png)
 9. Author Post list
+
 ![](docs/images/html_validation/author_panel_list.png)
 10. Author Add Post
+
 ![](docs/images/html_validation/author_panel_add.png)
 11. Author Edit Post
+
 ![](docs/images/html_validation/author_panel_edit.png)
 12. Author Delete Post
+
 ![](docs/images/html_validation/author_panel_delete.png)
 
 #### 2. CSS - [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)
 1. app.css
+
 ![](docs/images/css_validation/app.png)
 2. auth.css
+
 ![](docs/images/css_validation/auth.png)
 3. author_post.css
+
 ![](docs/images/css_validation/author_post.png)
 4. index.css
+
 ![](docs/images/css_validation/index.png)
 5. post_list.css
+
 ![](docs/images/css_validation/post_list.png)
 6. post_detail.css
+
 ![](docs/images/css_validation/post_detail.png)
 
 #### 3. Python - PyCharm
@@ -367,53 +385,73 @@ no issues where detected.
 ### Lighthouse Testing <a name="lighthouse-testing"></a>
 1. About Page
     * Desktop
+   
    ![](docs/images/lighthouse/about-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/about-mobile.png)
 2. All Posts Page
     * Desktop
+   
    ![](docs/images/lighthouse/all-posts-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/all-posts-mobile.png)
 3. Author Delete Post
     * Desktop
+   
    ![](docs/images/lighthouse/author-delete-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/author-delete-mobile.png)
 4. Author Add/Edit Post (same view)
     * Desktop
+   
    ![](docs/images/lighthouse/author-edit-add-post-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/author-edit-add-post-mobile.png)
 5. Author Posts List
     * Desktop
+   
    ![](docs/images/lighthouse/author-post-list-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/author-post-list-mobile.png)
 6. Contact Page
     * Desktop
+   
    ![](docs/images/lighthouse/contact-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/contact-mobile.png)
 7. Home Page
     * Desktop
+   
    ![](docs/images/lighthouse/home-page-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/home-page-mobile.png)
 8. Sign In Page
     * Desktop
+   
    ![](docs/images/lighthouse/sign-in-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/sign-inmobile.png)
 9. Sign Out Page
     * Desktop
+   
    ![](docs/images/lighthouse/sign-out-desktop.png)
     * Mobile
+   
    ![](docs/images/lighthouse/sign-out-mobile.png)
 10. Sign Up Page
     * Desktop
+    
     ![](docs/images/lighthouse/sign-up-desktop.png)
     * Mobile
+    
     ![](docs/images/lighthouse/sign-up-mobile.png)
 
 ## Deployment <a name="deployment"></a>
